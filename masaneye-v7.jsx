@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasanEye v7 — Operational Intelligence Platform (2026-03-16)</title>
-</head>
-<body style="margin:0;padding:0;background:#08090c;overflow:hidden">
-  <div id="root"></div>
-
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <script type="text/babel">
-const { useState, useEffect, useRef } = React;
+import { useState, useEffect, useRef } from "react";
+import * as THREE from "three";
 
 // ============================================================
 // WEBGL HEXAGONAL PARTICLE FIELD
@@ -1020,7 +1005,7 @@ const ZaloGroupList = ({ groups, selectedId, onSelect }) => (
     <div style={{ padding: "10px 12px", borderBottom: "1px solid #e2e8f0" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
         <div style={{ width: 24, height: 24, borderRadius: 5, background: "#0068FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff" }}>Z</div>
-        <div><div style={{ color: "#1e293b", fontSize: 12, fontWeight: 700 }}>Trợ lý Masan</div><div style={{ color: "#4ade80", fontSize: 8, fontFamily: "monospace" }}>● Monitoring</div></div>
+        <div><div style={{ color: "#1e293b", fontSize: 12, fontWeight: 700 }}>Tr\u1ee3 l\u00fd Masan</div><div style={{ color: "#4ade80", fontSize: 8, fontFamily: "monospace" }}>\u25cf Monitoring</div></div>
       </div>
     </div>
     {groups.map(g => (
@@ -1344,7 +1329,7 @@ const WinPlusTab = ({ onAction }) => {
             {metrics.ruralUrbanSplit.map((segment, i) => (
               <div key={i} style={{ flex: 1, background: "#ffffff", borderRadius: 8, padding: "10px 12px", border: `1px solid ${splitColors[segment.type]}33` }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-                  <div style={{ width: 28, height: 28, borderRadius: 6, background: splitColors[segment.type] + "22", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{segment.type === "rural" ? "🌾" : "🏙"}</div>
+                  <div style={{ width: 28, height: 28, borderRadius: 6, background: splitColors[segment.type] + "22", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{segment.type === "rural" ? "\ud83c\udf3e" : "\ud83c\udfd9"}</div>
                   <div>
                     <div style={{ color: "#1e293b", fontSize: 12, fontWeight: 700 }}>{segment.label}</div>
                     <div style={{ color: splitColors[segment.type], fontSize: 9, fontFamily: "monospace" }}>{segment.partners} partners</div>
@@ -1412,9 +1397,9 @@ const WinPlusTab = ({ onAction }) => {
           <div style={{ marginTop: 12, background: "linear-gradient(135deg,#2563eb11,#7c3aed11)", border: "1px solid #7c3aed33", borderRadius: 8, padding: "10px 12px" }}>
             <div style={{ color: "#7c3aed", fontSize: 9, fontFamily: "monospace", fontWeight: 700, marginBottom: 6 }}>&#129302; LLM-DEPLOYABLE ACTIONS</div>
             {[
-              { label: "Optimize Rural Route Planning", toast: "Deploying Route Optimizer Agent → Analyzing 2,800 rural partner locations for optimal delivery routing..." },
-              { label: "Partner Churn Prediction", toast: "Partner Churn Model running → Scoring 4,200 partners on 30-day churn probability..." },
-              { label: "Product Mix Recommender", toast: "Product Mix Agent deployed → Generating SKU recommendations for 340 underperforming partners..." },
+              { label: "Optimize Rural Route Planning", toast: "Deploying Route Optimizer Agent \u2192 Analyzing 2,800 rural partner locations for optimal delivery routing..." },
+              { label: "Partner Churn Prediction", toast: "Partner Churn Model running \u2192 Scoring 4,200 partners on 30-day churn probability..." },
+              { label: "Product Mix Recommender", toast: "Product Mix Agent deployed \u2192 Generating SKU recommendations for 340 underperforming partners..." },
             ].map((a, i) => (
               <button key={i} onClick={() => onAction && onAction(a.label, "llm", a.toast)} style={{
                 display: "block", width: "100%", textAlign: "left", marginBottom: 4, padding: "6px 10px",
@@ -1494,7 +1479,7 @@ const FinanceTab = ({ onAction }) => {
           <div style={{ color: "#16a34a", fontSize: 10, fontFamily: "monospace" }}>Covenant Tracker &#8226; NWC Optimization &#8226; Capex Allocation &#8226; Private Label PMF &#8226; Auto-Rolling Forecasts</div>
         </div>
         <div style={{ marginLeft: "auto", display: "flex", gap: 4 }}>
-          <button onClick={() => onAction && onAction("Auto-Update Forecast", "llm", "Auto-Rolling Forecast updated → Net Debt/EBITDA projected 2.9x year-end, NWC optimized to ₫1.2T target...")} style={{
+          <button onClick={() => onAction && onAction("Auto-Update Forecast", "llm", "Auto-Rolling Forecast updated \u2192 Net Debt/EBITDA projected 2.9x year-end, NWC optimized to \u20ab1.2T target...")} style={{
             background: "linear-gradient(135deg,#2563eb15,#7c3aed15)", border: "1px solid #7c3aed44", borderRadius: 5,
             padding: "5px 10px", color: "#7c3aed", fontSize: 9, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
           }}>&#129302; Auto-Update Forecast</button>
@@ -1516,7 +1501,7 @@ const FinanceTab = ({ onAction }) => {
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
             <div style={{ color: "#475569", fontSize: 9, fontFamily: "monospace", fontWeight: 700 }}>NET WORKING CAPITAL BREAKDOWN</div>
-            <button onClick={() => onAction && onAction("NWC Optimization Agent", "llm", "NWC Optimization Agent → Targeting ₫420B MCH receivables reduction, ₫180B inventory optimization, projected NWC improvement ₫600B...")} style={{
+            <button onClick={() => onAction && onAction("NWC Optimization Agent", "llm", "NWC Optimization Agent \u2192 Targeting \u20ab420B MCH receivables reduction, \u20ab180B inventory optimization, projected NWC improvement \u20ab600B...")} style={{
               background: "linear-gradient(135deg,#2563eb15,#7c3aed15)", border: "1px solid #7c3aed44", borderRadius: 4,
               padding: "3px 8px", color: "#7c3aed", fontSize: 8, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
             }}>&#129302; Optimize NWC Agent</button>
@@ -1536,7 +1521,7 @@ const FinanceTab = ({ onAction }) => {
                 <div style={{ color: "#1e293b", fontSize: 10, fontFamily: "monospace", fontWeight: 600 }}>{row.current}</div>
                 <div style={{ color: "#16a34a", fontSize: 10, fontFamily: "monospace" }}>{row.target}</div>
                 <div style={{ color: row.excess.includes("-") ? "#16a34a" : "#ef4444", fontSize: 10, fontFamily: "monospace", fontWeight: 700 }}>{row.excess}</div>
-                <button onClick={() => onAction && onAction(`Optimize ${row.component}`, "finance", `NWC Agent targeting ${row.component} → ${row.actionDetail || "Optimization in progress..."}`)} style={{
+                <button onClick={() => onAction && onAction(`Optimize ${row.component}`, "finance", `NWC Agent targeting ${row.component} \u2192 ${row.actionDetail || "Optimization in progress..."}`)} style={{
                   background: "#16a34a22", border: "1px solid #16a34a44", borderRadius: 3,
                   padding: "2px 6px", color: "#16a34a", fontSize: 7, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
                 }}>Optimize</button>
@@ -1549,7 +1534,7 @@ const FinanceTab = ({ onAction }) => {
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
             <div style={{ color: "#475569", fontSize: 9, fontFamily: "monospace", fontWeight: 700 }}>CAPEX ALLOCATION & ROI RANKING</div>
-            <button onClick={() => onAction && onAction("Capex Reallocation", "llm", "Capex Reallocation Agent → Shifting ₫120B from low-ROI projects to WCM store conversions (projected 340% ROI)...")} style={{
+            <button onClick={() => onAction && onAction("Capex Reallocation", "llm", "Capex Reallocation Agent \u2192 Shifting \u20ab120B from low-ROI projects to WCM store conversions (projected 340% ROI)...")} style={{
               background: "linear-gradient(135deg,#2563eb15,#7c3aed15)", border: "1px solid #7c3aed44", borderRadius: 4,
               padding: "3px 8px", color: "#7c3aed", fontSize: 8, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
             }}>&#129302; Reallocation Agent</button>
@@ -1578,7 +1563,7 @@ const FinanceTab = ({ onAction }) => {
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
             <div style={{ color: "#475569", fontSize: 9, fontFamily: "monospace", fontWeight: 700 }}>PRIVATE LABEL PMF TRACKER</div>
-            <button onClick={() => onAction && onAction("Scale Private Label", "llm", "Private Label Scale Agent → Identifying top 5 categories for PLH expansion, projected margin uplift +280bps...")} style={{
+            <button onClick={() => onAction && onAction("Scale Private Label", "llm", "Private Label Scale Agent \u2192 Identifying top 5 categories for PLH expansion, projected margin uplift +280bps...")} style={{
               background: "linear-gradient(135deg,#2563eb15,#7c3aed15)", border: "1px solid #7c3aed44", borderRadius: 4,
               padding: "3px 8px", color: "#7c3aed", fontSize: 8, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
             }}>&#129302; Scale Private Label</button>
@@ -1612,7 +1597,7 @@ const FinanceTab = ({ onAction }) => {
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
             <div style={{ color: "#475569", fontSize: 9, fontFamily: "monospace", fontWeight: 700 }}>AUTO-ROLLING FORECAST</div>
-            <button onClick={() => onAction && onAction("Auto-Update Forecast", "llm", "Auto-Rolling Forecast updated → WCM revenue trajectory +4.2% vs plan, MCH stable, PLH accelerating +18% QoQ...")} style={{
+            <button onClick={() => onAction && onAction("Auto-Update Forecast", "llm", "Auto-Rolling Forecast updated \u2192 WCM revenue trajectory +4.2% vs plan, MCH stable, PLH accelerating +18% QoQ...")} style={{
               background: "linear-gradient(135deg,#2563eb15,#7c3aed15)", border: "1px solid #7c3aed44", borderRadius: 4,
               padding: "3px 8px", color: "#7c3aed", fontSize: 8, fontFamily: "monospace", fontWeight: 600, cursor: "pointer",
             }}>&#129302; Auto-Update Forecast</button>
@@ -1653,9 +1638,9 @@ const FinanceTab = ({ onAction }) => {
           <div style={{ marginTop: 8, background: "#16a34a11", border: "1px solid #16a34a33", borderRadius: 8, padding: "10px 12px" }}>
             <div style={{ color: "#16a34a", fontSize: 9, fontFamily: "monospace", fontWeight: 700, marginBottom: 6 }}>&#128176; FINANCE ACTIONS</div>
             {[
-              { label: "NWC Optimization Agent", toast: "NWC Optimization Agent → Targeting ₫420B MCH receivables reduction, renegotiating supplier terms for ₫180B payables extension..." },
-              { label: "Capex Reallocation", toast: "Capex Reallocation Agent → Recommending shift of ₫120B to high-ROI WCM conversions, pause on warehouse automation Phase 2..." },
-              { label: "Covenant Monitor Alert", toast: "Covenant Monitor set → Will alert if Net Debt/EBITDA exceeds 2.8x or Interest Cover drops below 4.5x..." },
+              { label: "NWC Optimization Agent", toast: "NWC Optimization Agent \u2192 Targeting \u20ab420B MCH receivables reduction, renegotiating supplier terms for \u20ab180B payables extension..." },
+              { label: "Capex Reallocation", toast: "Capex Reallocation Agent \u2192 Recommending shift of \u20ab120B to high-ROI WCM conversions, pause on warehouse automation Phase 2..." },
+              { label: "Covenant Monitor Alert", toast: "Covenant Monitor set \u2192 Will alert if Net Debt/EBITDA exceeds 2.8x or Interest Cover drops below 4.5x..." },
             ].map((a, i) => (
               <button key={i} onClick={() => onAction && onAction(a.label, "finance", a.toast)} style={{
                 display: "block", width: "100%", textAlign: "left", marginBottom: 3, padding: "5px 9px",
@@ -1763,7 +1748,7 @@ const StoreDetailPanel = ({ store, onClose }) => {
             const ac = isC ? "#ef4444" : isComp ? "#7c3aed" : "#eab308";
             return (
               <div key={i} style={{ background: "#ffffff", borderRadius: 5, padding: "5px 8px", marginBottom: 3, borderLeft: `3px solid ${ac}`, display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ color: ac, fontSize: 10 }}>{isC ? "●" : isComp ? "⚔" : "▲"}</span>
+                <span style={{ color: ac, fontSize: 10 }}>{isC ? "\u25cf" : isComp ? "\u2694" : "\u25b2"}</span>
                 <span style={{ color: "#475569", fontSize: 10, lineHeight: 1.3 }}>{a}</span>
               </div>
             );
@@ -1847,8 +1832,8 @@ const HexMapTab = ({ initialFilter, onNavigateBack }) => {
         <div style={{ padding: "6px 16px", borderBottom: "1px solid #e2e8f0", background: "#f1f5f9", display: "flex", gap: 12, flexShrink: 0 }}>
           {[
             { l: "Total", v: totalStores, c: "#94a3b8" },
-            { l: "WCM", v: wcmCount, c: "#ef4444", icon: "■" },
-            { l: "GT", v: gtCount, c: "#f59e0b", icon: "■" },
+            { l: "WCM", v: wcmCount, c: "#ef4444", icon: "\u25a0" },
+            { l: "GT", v: gtCount, c: "#f59e0b", icon: "\u25a0" },
             { l: "Critical", v: criticalCount, c: "#ef4444" },
             { l: "Warning", v: warningCount, c: "#eab308" },
           ].map((s, i) => (
@@ -1888,8 +1873,8 @@ const HexMapTab = ({ initialFilter, onNavigateBack }) => {
 
             {[
               { name: "DC Long An", x: 170, y: 310, status: "critical" },
-              { name: "DC Bình Dương", x: 560, y: 60, status: "ok" },
-              { name: "DC Cần Thơ", x: 80, y: 450, status: "critical" },
+              { name: "DC B\u00ecnh D\u01b0\u01a1ng", x: 560, y: 60, status: "ok" },
+              { name: "DC C\u1ea7n Th\u01a1", x: 80, y: 450, status: "critical" },
             ].map((dc, i) => (
               <g key={i}>
                 <rect x={dc.x - 14} y={dc.y - 8} width={28} height={16} rx={3} fill={dc.status === "critical" ? "#dc262622" : "#16a34a22"} stroke={dc.status === "critical" ? "#dc2626" : "#16a34a"} strokeWidth="0.8" />
@@ -1991,7 +1976,7 @@ const HexMapTab = ({ initialFilter, onNavigateBack }) => {
 // ============================================================
 // MAIN APP — MasanEyeDemo (6 tabs)
 // ============================================================
-function MasanEyeDemo() {
+export default function MasanEyeDemo() {
   const [tab, setTab] = useState("query");
   const [scenario, setScenario] = useState(null);
   const [inputVal, setInputVal] = useState("");
@@ -2009,9 +1994,9 @@ function MasanEyeDemo() {
     } else if (type === "llm") {
       setToast(`Deploying ${label} Agent...`);
     } else if (type === "finance") {
-      setToast(`✓ ${label} initiated`);
+      setToast(`\u2713 ${label} initiated`);
     } else {
-      setToast(`✓ ${label}`);
+      setToast(`\u2713 ${label}`);
     }
   };
 
@@ -2039,19 +2024,19 @@ function MasanEyeDemo() {
 
       <WebGLHexField />
 
-      {/* HEADER — glass effect */}
+      {/* HEADER \u2014 glass effect */}
       <div style={{ padding: "8px 18px", borderBottom: "1px solid rgba(226,232,240,0.8)", display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.82)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", flexShrink: 0, position: "relative", zIndex: 2 }}>
         <div style={{ width: 30, height: 30, borderRadius: 6, background: "linear-gradient(135deg,#2563eb,#7c3aed)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, fontWeight: 800, color: "#fff" }}>M</div>
         <div><div style={{ fontWeight: 700, fontSize: 14 }}>MasanEye</div><div style={{ color: "#475569", fontSize: 8, fontFamily: "monospace" }}>Operational Intelligence Platform v7</div></div>
 
         <div style={{ marginLeft: 24, display: "flex", gap: 2, background: "rgba(241,245,249,0.7)", borderRadius: 6, padding: 2 }}>
           {[
-            { id: "query", label: "🎯 Management Master View" },
-            { id: "ingest", label: "👁️ Zalo + SUPRA Ingestion" },
-            { id: "directcoverage", label: "📊 Direct Coverage MCH" },
-            { id: "winplus", label: "🏪 Win+ Intelligence" },
-            { id: "finance", label: "💰 Finance & Covenants" },
-            { id: "storemap", label: "⬡ Store Map" },
+            { id: "query", label: "\ud83c\udfaf Management Master View" },
+            { id: "ingest", label: "\ud83d\udc41\ufe0f Zalo + SUPRA Ingestion" },
+            { id: "directcoverage", label: "\ud83d\udcca Direct Coverage MCH" },
+            { id: "winplus", label: "\ud83c\udfea Win+ Intelligence" },
+            { id: "finance", label: "\ud83d\udcb0 Finance & Covenants" },
+            { id: "storemap", label: "\u2b21 Store Map" },
           ].map(t2 => (
             <button key={t2.id} onClick={() => setTab(t2.id)} style={{
               padding: "5px 10px", borderRadius: 4, border: "none", cursor: "pointer",
@@ -2081,8 +2066,8 @@ function MasanEyeDemo() {
           <div ref={scrollRef} style={{ flex: 1, overflow: "auto", padding: "12px 18px" }}>
             {!sc ? (
               <div style={{ animation: "fadeSlide 0.4s" }}>
-                <div style={{ color: "#94a3b8", fontSize: 17, fontWeight: 300, marginBottom: 14 }}>Hỏi em bất cứ điều gì.</div>
-                <div style={{ color: "#475569", fontSize: 8, fontFamily: "monospace", marginBottom: 5, fontWeight: 700 }}>SUGGESTED — with Direct MCH + Win+ + Finance data</div>
+                <div style={{ color: "#94a3b8", fontSize: 17, fontWeight: 300, marginBottom: 14 }}>H\u1ecfi em b\u1ea5t c\u1ee9 \u0111i\u1ec1u g\u00ec.</div>
+                <div style={{ color: "#475569", fontSize: 8, fontFamily: "monospace", marginBottom: 5, fontWeight: 700 }}>SUGGESTED \u2014 with Direct MCH + Win+ + Finance data</div>
                 {Object.entries(SCENARIOS).map(([k, s]) => (
                   <button key={k} onClick={() => setScenario(k)} style={{ display: "block", width: "100%", textAlign: "left", background: "rgba(255,255,255,0.85)", border: "1px solid #e2e8f0", borderRadius: 8, padding: "10px 14px", marginBottom: 5, color: "#475569", fontSize: 12, cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
                     onMouseEnter={e => e.target.style.borderColor = "#2563eb"} onMouseLeave={e => e.target.style.borderColor = "#e2e8f0"}>
@@ -2096,15 +2081,15 @@ function MasanEyeDemo() {
                 <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6, color: "#64748b", fontSize: 9, fontFamily: "monospace" }}><div style={{ width: 5, height: 5, borderRadius: 3, background: "#eab308", animation: "pulse 1s infinite" }} />Querying {sc.sources.length} sources (Zalo + POS + SUPRA + Direct MCH + Win+ + Finance)...</div>
                 {sc.sources.map((src, i) => <SourceCard key={i} source={src} delay={i * 1400} />)}
                 <AnswerBlock answer={sc.answer} delay={sc.sources.length * 1400 + 800} onContact={(m, p) => setContactModal({ method: m, person: p })} onAction={handleAction} onNavigateMap={navigateToMap} />
-                <button onClick={() => setScenario(null)} style={{ marginTop: 10, background: "transparent", border: "1px solid #e2e8f0", borderRadius: 4, padding: "4px 10px", color: "#64748b", fontSize: 9, cursor: "pointer", fontFamily: "monospace" }}>← Back</button>
+                <button onClick={() => setScenario(null)} style={{ marginTop: 10, background: "transparent", border: "1px solid #e2e8f0", borderRadius: 4, padding: "4px 10px", color: "#64748b", fontSize: 9, cursor: "pointer", fontFamily: "monospace" }}>\u2190 Back</button>
               </div>
             )}
           </div>
           <div style={{ padding: "7px 18px", borderTop: "1px solid rgba(226,232,240,0.6)", background: "rgba(241,245,249,0.75)", backdropFilter: "blur(12px)", flexShrink: 0 }}>
             <div style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.9)", border: "1px solid #e2e8f0", borderRadius: 8, padding: "0 12px", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
               <input value={inputVal} onChange={e => setInputVal(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && inputVal.trim()) { const l = inputVal.toLowerCase(); const keys = Object.keys(SCENARIOS); if (l.includes("chin") || l.includes("gt")) setScenario(keys.find(k => k.includes("chinsu")) || keys[1]); else if (l.includes("margin") || l.includes("meatdeli")) setScenario(keys.find(k => k.includes("margin") || k.includes("meat")) || keys[2]); else if (l.includes("finance") || l.includes("covenant") || l.includes("nwc")) setScenario(keys.find(k => k.includes("finance")) || keys[0]); else if (l.includes("win") || l.includes("rural")) setScenario(keys.find(k => k.includes("win")) || keys[0]); else setScenario(keys[0]); setInputVal(""); } }}
-                placeholder="Hỏi gì cũng được... (thử: 'Chin-su GT miền Nam?' or 'NWC status?')" style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#1e293b", fontSize: 12, padding: "9px 0", fontFamily: "inherit" }} />
-              <span style={{ color: "#475569", fontSize: 8, fontFamily: "monospace" }}>⏎</span>
+                placeholder="H\u1ecfi g\u00ec c\u0169ng \u0111\u01b0\u1ee3c... (th\u1eed: 'Chin-su GT mi\u1ec1n Nam?' or 'NWC status?')" style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#1e293b", fontSize: 12, padding: "9px 0", fontFamily: "inherit" }} />
+              <span style={{ color: "#475569", fontSize: 8, fontFamily: "monospace" }}>\u23ce</span>
             </div>
           </div>
         </div>
@@ -2141,7 +2126,7 @@ function MasanEyeDemo() {
             </div>
             {[{ l: "Phone", v: contactModal.person.phone }, { l: "Email", v: contactModal.person.email }].map((b, i) => (
               <div key={i} style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: 6, padding: "7px 10px", marginBottom: 5, display: "flex", alignItems: "center", gap: 7 }}>
-                <span style={{ fontSize: 14 }}>{i === 0 ? "📞" : "✉️"}</span>
+                <span style={{ fontSize: 14 }}>{i === 0 ? "\ud83d\udcde" : "\u2709\ufe0f"}</span>
                 <div><div style={{ color: "#94a3b8", fontSize: 8 }}>{b.l}</div><div style={{ color: "#1e293b", fontSize: 12, fontFamily: "monospace" }}>{b.v}</div></div>
               </div>
             ))}
@@ -2151,7 +2136,7 @@ function MasanEyeDemo() {
       )}
 
       {/* Toast notification */}
-      {toast && <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 998, background: "linear-gradient(135deg,#16a34a,#0891b2)", borderRadius: 7, padding: "10px 16px", color: "#fff", fontSize: 11, fontWeight: 600, animation: "fadeSlide 0.3s", boxShadow: "0 4px 16px rgba(0,0,0,0.4)", maxWidth: 420, lineHeight: 1.4 }}>✓ {toast}{(() => { setTimeout(() => setToast(null), 3500); return null; })()}</div>}
+      {toast && <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 998, background: "linear-gradient(135deg,#16a34a,#0891b2)", borderRadius: 7, padding: "10px 16px", color: "#fff", fontSize: 11, fontWeight: 600, animation: "fadeSlide 0.3s", boxShadow: "0 4px 16px rgba(0,0,0,0.4)", maxWidth: 420, lineHeight: 1.4 }}>\u2713 {toast}{(() => { setTimeout(() => setToast(null), 3500); return null; })()}</div>}
     </div>
   );
 }
@@ -2163,22 +2148,16 @@ function Ticker() {
   const [t, setT] = useState(0);
   useEffect(() => { const iv = setInterval(() => setT(x => x + 1), 2800); return () => clearInterval(iv); }, []);
   const a = [
-    "🔴 STOCKOUT: MEATDeli Xúc xích — 12 WCM + 47 GT stores D2 | Direct MCH confirms 38k store impact",
-    "📊 DIRECT MCH: 127 GT stores stopped ordering MEATDeli (30d) — field reps confirm competitor substitution",
-    "🏭 SUPRA: Cold chain compliance 88.4% — DC Cần Thơ critical | Truck #7 compressor ETA 10d",
-    "🏪 WIN+: 4,200 partners active — rural penetration +18% MoM | Omachi leading sell-through",
-    "💰 FINANCE: Net Debt/EBITDA at 2.7x (limit 3.5x) — NWC optimization targeting ₫600B reduction",
-    "🔴 COVENANT: Interest Coverage 4.8x trending to 4.2x year-end — monitor required",
-    "🟢 PLH: Private label margin +680bps vs branded — Snacks PMF score 82/100, ready to scale",
-    "🟡 CAPEX: WCM store conversion ROI 340% — Reallocation Agent recommends +₫120B shift",
-    "🏪 WIN+: Rural partner growth +31% in 6 months — Mekong Delta showing strongest adoption",
-    "📊 DIRECT MCH: Magi gaining +5% GT share in Mekong Delta — field reps deploying counter-promo",
+    "\ud83d\udd34 STOCKOUT: MEATDeli X\u00fac x\u00edch \u2014 12 WCM + 47 GT stores D2 | Direct MCH confirms 38k store impact",
+    "\ud83d\udcca DIRECT MCH: 127 GT stores stopped ordering MEATDeli (30d) \u2014 field reps confirm competitor substitution",
+    "\ud83c\udfed SUPRA: Cold chain compliance 88.4% \u2014 DC C\u1ea7n Th\u01a1 critical | Truck #7 compressor ETA 10d",
+    "\ud83c\udfea WIN+: 4,200 partners active \u2014 rural penetration +18% MoM | Omachi leading sell-through",
+    "\ud83d\udcb0 FINANCE: Net Debt/EBITDA at 2.7x (limit 3.5x) \u2014 NWC optimization targeting \u20ab600B reduction",
+    "\ud83d\udd34 COVENANT: Interest Coverage 4.8x trending to 4.2x year-end \u2014 monitor required",
+    "\ud83d\udfe2 PLH: Private label margin +680bps vs branded \u2014 Snacks PMF score 82/100, ready to scale",
+    "\ud83d\udfe1 CAPEX: WCM store conversion ROI 340% \u2014 Reallocation Agent recommends +\u20ab120B shift",
+    "\ud83c\udfea WIN+: Rural partner growth +31% in 6 months \u2014 Mekong Delta showing strongest adoption",
+    "\ud83d\udcca DIRECT MCH: Magi gaining +5% GT share in Mekong Delta \u2014 field reps deploying counter-promo",
   ];
   return <div style={{ background: "rgba(241,245,249,0.8)", borderBottom: "1px solid rgba(226,232,240,0.6)", padding: "4px 18px", height: 22, flexShrink: 0, overflow: "hidden", backdropFilter: "blur(8px)" }}><div style={{ color: "#64748b", fontSize: 9, fontFamily: "'JetBrains Mono',monospace", whiteSpace: "nowrap" }}>{a[t % a.length]}</div></div>;
 }
-
-
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(MasanEyeDemo));
-  </script>
-</body>
-</html>
